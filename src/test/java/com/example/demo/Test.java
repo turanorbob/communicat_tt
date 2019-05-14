@@ -1,6 +1,11 @@
 package com.example.demo;
 
+import groovy.lang.Binding;
+import groovy.lang.GroovyShell;
 import org.assertj.core.util.Maps;
+import org.luaj.vm2.Globals;
+import org.luaj.vm2.LuaValue;
+import org.luaj.vm2.lib.jse.JsePlatform;
 
 import javax.script.*;
 import java.io.IOException;
@@ -30,10 +35,12 @@ public class Test {
     public static Map<String, Object> testScript(Map<String, Object> context, String script) throws ScriptException {
         ScriptEngineManager manager = new ScriptEngineManager();
         ScriptEngine engine = manager.getEngineByName("javascript");
-        for(Map.Entry entry :  context.entrySet()) {
-            engine.put("$"+entry.getKey(), entry.getValue());
+        if(!context.isEmpty()){
+            for(Map.Entry entry :  context.entrySet()) {
+                engine.put("$"+entry.getKey(), entry.getValue());
+            }
         }
-//        Bindings bindings = engine.getBindings(ScriptContext.ENGINE_SCOPE);
+
         Object obj = engine.eval(script);
 
         // 脚本上下文
@@ -48,23 +55,42 @@ public class Test {
     public static void main(String args[]) throws ScriptException {
         long start = System.currentTimeMillis();
         Map<String, Object> context = new HashMap<>();
-        context.put("a", 1.234567890);
+        int count = 4000000;
+        System.out.println("1 .. "+ count +" = ?");
+        System.out.println("int max:"+ Integer.MAX_VALUE);
 
-        String script="var sum=0;for(var i=0; i<1000000; i++){sum=sum+i;}";
+        String script="var sum=0;for(i=0; i<="+count+"; i++){sum=sum+i;}";
         Map<String, Object> result = testScript(context, script);
 
         System.out.println("javascript cost time:" + (System.currentTimeMillis() - start));
-        result.forEach((key, value) -> {
-            System.out.println(key+"->" + value);
-        });
+        Double rs = (Double)result.get("sum");
+        System.out.println("sum:" + rs.longValue());
 
         start = System.currentTimeMillis();
 
-        int sum =0;
-        for(int i=0; i<1000000; i++){
+        long sum =0;
+        for(int i=0; i<=count; i++){
             sum = sum+i;
         }
         System.out.println("java cost time:" + (System.currentTimeMillis() - start));
+        System.out.println("result:"+ sum);
+
+        start = System.currentTimeMillis();
+        Binding binding = new Binding();
+        GroovyShell shell = new GroovyShell(binding);
+        script = "def long sum=0;for(i=0;i<="+count+";i++){sum=sum+i};return sum;";
+        sum = (Long) shell.evaluate(script);
+        System.out.println("groovy cost time: "+ (System.currentTimeMillis() - start));
+        System.out.println("result:"+ sum);
+
+        start = System.currentTimeMillis();
+
+        script = "sum = 0; for i = 0,"+count+" do sum = sum + i; end";
+        Globals globals = JsePlatform.standardGlobals();
+        LuaValue chunk = globals.load(script);
+        chunk.call();
+        System.out.println("lua cost time:" + (System.currentTimeMillis() - start));
+        System.out.println("result:"+globals.get("sum"));
 
     }
 }
