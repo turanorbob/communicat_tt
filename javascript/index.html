@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Code Mirror</title>
+
+    <link href="./lib/codemirror.css" rel="stylesheet" >
+    <script src="./lib/codemirror.js"></script>
+</head>
+<body>
+    <textarea id="code"></textarea>
+    <script type="text/javascript">
+        var code = document.getElementById("code");
+        var editor = CodeMirror.fromTextArea(code, {
+            mode: "text/html",
+            //theme: "default",
+            indentUnit: 4, // default 2
+            tabSize: 4,
+            lineNumbers: true
+        });
+    </script>
+</body>
+</html>

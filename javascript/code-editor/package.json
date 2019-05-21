@@ -1,0 +1,17 @@
+{
+  "name": "dir",
+  "version": "1.0.0",
+  "description": "code editor",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "legend",
+  "license": "ISC",
+  "devDependencies": {
+    "express": "^4.17.0",
+    "webpack": "^4.32.0",
+    "webpack-cli": "^3.3.2"
+  }
+}
