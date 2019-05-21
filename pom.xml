@@ -5,6 +5,10 @@
     <packaging>pom</packaging>
     <modules>
         <module>form-engine</module>
+        <module>eureka-server</module>
+        <module>service-eureka-clienteureka</module>
+        <module>springcloud-session-redis</module>
+        <module>springcloud-session-zuul</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
