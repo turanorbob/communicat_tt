@@ -2,6 +2,7 @@ package com.example.demo;
 
 import groovy.lang.Binding;
 import groovy.lang.GroovyShell;
+import org.assertj.core.util.Lists;
 import org.assertj.core.util.Maps;
 import org.luaj.vm2.Globals;
 import org.luaj.vm2.LuaValue;
@@ -10,6 +11,7 @@ import org.luaj.vm2.lib.jse.JsePlatform;
 import javax.script.*;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
@@ -42,6 +44,7 @@ public class Test {
         }
 
         Object obj = engine.eval(script);
+        System.out.println(obj);
 
         // 脚本上下文
         // 定义脚本变量
@@ -52,7 +55,7 @@ public class Test {
         return engineVariable;
     }
 
-    public static void main(String args[]) throws ScriptException {
+    public static void compare() throws ScriptException {
         long start = System.currentTimeMillis();
         Map<String, Object> context = new HashMap<>();
         int count = 4000000;
@@ -91,6 +94,20 @@ public class Test {
         chunk.call();
         System.out.println("lua cost time:" + (System.currentTimeMillis() - start));
         System.out.println("result:"+globals.get("sum"));
+    }
+
+    public static void main(String args[]) throws ScriptException {
+
+        Map<String, Object> data = new HashMap<>();
+        List<User> eles = Lists.newArrayList(new User(1,"A"), new User(2, "B"));
+        data.put("eles", eles);
+
+        //System.out.println(eles.get(0).getName());
+
+        String script = "var aa=$eles;for(var i=0; i<aa.size()-1;i++){" +
+                "aa.get(i).getName()}";
+        testScript(data, script);
+
 
     }
 }
