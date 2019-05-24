@@ -9,6 +9,7 @@
         <module>service-eureka-clienteureka</module>
         <module>springcloud-session-redis</module>
         <module>springcloud-session-zuul</module>
+        <module>api-manager</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -86,7 +87,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>io.projectreactor</groupId>

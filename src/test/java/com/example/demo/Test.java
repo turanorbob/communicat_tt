@@ -1,21 +1,12 @@
 package com.example.demo;
 
-import groovy.lang.Binding;
-import groovy.lang.GroovyShell;
-import org.assertj.core.util.Lists;
-import org.assertj.core.util.Maps;
-import org.luaj.vm2.Globals;
-import org.luaj.vm2.LuaValue;
-import org.luaj.vm2.lib.jse.JsePlatform;
-
 import javax.script.*;
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Stream;
-
-import static jdk.nashorn.internal.runtime.ScriptingFunctions.exec;
 
 /**
  * @Description
@@ -44,7 +35,7 @@ public class Test {
         }
 
         Object obj = engine.eval(script);
-        System.out.println(obj);
+        System.out.println(context.get("a")+","+script + "->" + obj+"," + (context.get("a")==obj));
 
         // 脚本上下文
         // 定义脚本变量
@@ -78,36 +69,33 @@ public class Test {
         System.out.println("java cost time:" + (System.currentTimeMillis() - start));
         System.out.println("result:"+ sum);
 
-        start = System.currentTimeMillis();
-        Binding binding = new Binding();
-        GroovyShell shell = new GroovyShell(binding);
-        script = "def long sum=0;for(i=0;i<="+count+";i++){sum=sum+i};return sum;";
-        sum = (Long) shell.evaluate(script);
-        System.out.println("groovy cost time: "+ (System.currentTimeMillis() - start));
-        System.out.println("result:"+ sum);
-
-        start = System.currentTimeMillis();
-
-        script = "sum = 0; for i = 0,"+count+" do sum = sum + i; end";
-        Globals globals = JsePlatform.standardGlobals();
-        LuaValue chunk = globals.load(script);
-        chunk.call();
-        System.out.println("lua cost time:" + (System.currentTimeMillis() - start));
-        System.out.println("result:"+globals.get("sum"));
     }
 
-    public static void main(String args[]) throws ScriptException {
-
-        Map<String, Object> data = new HashMap<>();
-        List<User> eles = Lists.newArrayList(new User(1,"A"), new User(2, "B"));
-        data.put("eles", eles);
+    public static void main(String args[]) throws ScriptException, InterruptedException {
+        List<User> eles = new ArrayList<>();
+        eles.add(new User(1,"A"));
+        eles.add(new User(2, "B"));
 
         //System.out.println(eles.get(0).getName());
 
-        String script = "var aa=$eles;for(var i=0; i<aa.size()-1;i++){" +
-                "aa.get(i).getName()}";
-        testScript(data, script);
+        for(int i=0; i<100; i++){
+            final int t = i;
+            CompletableFuture.runAsync(()->{
+                Map<String, Object> data = new HashMap<>();
+                data.put("eles", eles);
+                data.put("isSale", false);
+                data.put("a", t);
+                String script = "var a=$a;a;";
+                try {
+                    testScript(data, script);
+                } catch (ScriptException e) {
+                    e.printStackTrace();
+                }
+            });
 
+        }
+
+        Thread.sleep(5000L);
 
     }
 }

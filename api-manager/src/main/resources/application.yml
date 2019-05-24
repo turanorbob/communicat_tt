@@ -1,0 +1,18 @@
+server:
+  port: 10000
+spring:
+  profiles:
+    active: product
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/api?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+    username: root
+    password: liaojian
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: UTC
+
