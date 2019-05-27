@@ -1,4 +1,7 @@
 #Api design
+
+> have many offer sdk now, meet this will resolve it? no coding?
+
 ##Method:  GET POST PUT PATCH DELETE
 ##URL: 
 * http://xxx.com/v1/test

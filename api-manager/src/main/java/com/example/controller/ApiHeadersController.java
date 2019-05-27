@@ -1,11 +1,11 @@
 package com.example.controller;
 
-import com.example.entity.Api;
-import com.example.service.IApiService;
-import com.example.vo.AddApiVo;
-import com.example.vo.ApiSearchVo;
+import com.example.entity.ApiHeaders;
+import com.example.service.IApiHeadersService;
+import com.example.vo.AddApiHeadersVo;
+import com.example.vo.ApiHeadersSearchVo;
 import com.example.vo.ResultVo;
-import com.example.vo.UpdateApiVo;
+import com.example.vo.UpdateApiHeadersVo;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,26 +18,26 @@ import org.springframework.web.bind.annotation.*;
  * @Date 2019/5/24
  */
 @RestController
-@RequestMapping("/api")
-@io.swagger.annotations.Api(tags = "api")
-public class ApiController {
+@RequestMapping("/apiHeaders")
+@io.swagger.annotations.Api(tags = "api-headers")
+public class ApiHeadersController {
 
     @Autowired
-    private IApiService apiService;
+    private IApiHeadersService apiHeadersService;
 
     @ApiOperation(value = "create")
     @PostMapping("/create")
-    public ResultVo<Boolean> create(AddApiVo param){
+    public ResultVo<Boolean> create(AddApiHeadersVo param){
         ResultVo<Boolean> response = new ResultVo<>();
-        response.setObject(apiService.create(param));
+        response.setObject(apiHeadersService.create(param));
         return response.success();
     }
 
     @ApiOperation(value = "update")
     @PostMapping("/update")
-    public ResultVo<Boolean> update(UpdateApiVo param){
+    public ResultVo<Boolean> update(UpdateApiHeadersVo param){
         ResultVo<Boolean> response = new ResultVo<>();
-        response.setObject(apiService.update(param));
+        response.setObject(apiHeadersService.update(param));
         return response.success();
     }
 
@@ -45,23 +45,23 @@ public class ApiController {
     @GetMapping("/delete/{id}")
     public ResultVo<Boolean> delete(@PathVariable("id") String id){
         ResultVo<Boolean> response = new ResultVo<>();
-        response.setObject(apiService.delete(id));
+        response.setObject(apiHeadersService.delete(id));
         return response.success();
     }
 
     @ApiOperation(value = "detail")
     @GetMapping("/detail/{id}")
-    public ResultVo<Api> detail(@PathVariable("id") String id){
-        ResultVo<Api> response = new ResultVo<>();
-        response.setObject(apiService.detail(id));
+    public ResultVo<ApiHeaders> detail(@PathVariable("id") String id){
+        ResultVo<ApiHeaders> response = new ResultVo<>();
+        response.setObject(apiHeadersService.detail(id));
         return response.success();
     }
 
     @ApiOperation(value = "search")
     @PostMapping("/search")
-    public ResultVo<Page<Api>> search(ApiSearchVo param){
-        ResultVo<Page<Api>> response = new ResultVo<>();
-        response.setObject(apiService.page(param));
+    public ResultVo<Page<ApiHeaders>> search(ApiHeadersSearchVo param){
+        ResultVo<Page<ApiHeaders>> response = new ResultVo<>();
+        response.setObject(apiHeadersService.page(param));
         return response.success();
     }
 }

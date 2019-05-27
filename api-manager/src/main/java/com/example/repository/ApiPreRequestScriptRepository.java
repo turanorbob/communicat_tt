@@ -1,7 +1,7 @@
 package com.example.repository;
 
 import com.example.entity.ApiPreRequestScript;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
-public interface ApiPreRequestScriptRepository extends CrudRepository<ApiPreRequestScript, String> {
+public interface ApiPreRequestScriptRepository extends PagingAndSortingRepository<ApiPreRequestScript, String> {
 }

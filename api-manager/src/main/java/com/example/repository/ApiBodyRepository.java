@@ -1,7 +1,7 @@
 package com.example.repository;
 
 import com.example.entity.ApiBody;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
-public interface ApiBodyRepository extends CrudRepository<ApiBody, String> {
+public interface ApiBodyRepository extends PagingAndSortingRepository<ApiBody, String> {
 }

@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.*;
  * @Date 2019/5/24
  */
 @RestController
-@RequestMapping("/api")
-@io.swagger.annotations.Api(tags = "api")
-public class ApiController {
+@RequestMapping("/apiParams")
+@io.swagger.annotations.Api(tags = "api-params")
+public class ApiParamsController {
 
     @Autowired
     private IApiService apiService;
