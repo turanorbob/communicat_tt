@@ -5,7 +5,6 @@ import com.example.service.IApiService;
 import com.example.service.ICommonService;
 import com.example.util.HttpUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 
 /**
@@ -26,9 +25,6 @@ public class CommonServiceImpl implements ICommonService {
         if(entity == null){
             return null;
         }
-        if(entity.getMethod().equals(HttpMethod.GET.name())){
-            return HttpUtil.get(entity.getUrl());
-        }
-        return null;
+        return HttpUtil.call(entity, null, null, null);
     }
 }

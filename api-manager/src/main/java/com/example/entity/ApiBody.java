@@ -21,6 +21,9 @@ public class ApiBody {
     private String id;
     @Column(name = "api_id")
     private String apiId;
+    /**
+     * type（none form-data x-www-form-urlencoded raw binary）
+     */
     private String type;
     private String content;
 }

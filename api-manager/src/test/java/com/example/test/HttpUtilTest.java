@@ -17,15 +17,22 @@ public class HttpUtilTest {
     @Test
     public void testGet(){
         String url = "http://www.izhishi.site";
-        System.out.println(HttpUtil.get(url));
+        System.out.println(HttpUtil.get(url, null));
+    }
+
+    @Test
+    public void testGetQueryParams(){
+        String url = "https://postman-echo.com/get" ;
+        Map<String, String> queryParams = new HashMap<>(1);
+        queryParams.put("test", "123");
+        System.out.println(HttpUtil.get(url, queryParams));
     }
 
     @Test
     public void testPost(){
-        String url = "http://www.izhishi.site/admin/getLogin";
+        String url = "https://postman-echo.com/post";
         Map<String, String> params = new HashMap<>();
-        params.put("userName", "jiangli");
-        params.put("userPwd", "jiangli");
+        params.put("strange", "boom");
         System.out.println(HttpUtil.postFormData(url, params));
     }
 
