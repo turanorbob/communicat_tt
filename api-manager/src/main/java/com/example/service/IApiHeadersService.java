@@ -6,6 +6,8 @@ import com.example.vo.ApiHeadersSearchVo;
 import com.example.vo.UpdateApiHeadersVo;
 import org.springframework.data.domain.Page;
 
+import java.util.List;
+
 public interface IApiHeadersService {
     boolean create(AddApiHeadersVo param);
 
@@ -14,6 +16,8 @@ public interface IApiHeadersService {
     boolean delete(String id);
 
     ApiHeaders detail(String id);
+
+    List<ApiHeaders> findAllByApiId(String apiId);
 
     Page<ApiHeaders> page(ApiHeadersSearchVo param);
 }

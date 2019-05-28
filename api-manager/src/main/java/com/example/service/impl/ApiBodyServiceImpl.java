@@ -63,6 +63,11 @@ public class ApiBodyServiceImpl implements IApiBodyService {
     }
 
     @Override
+    public ApiBody findByApiId(String apiId) {
+        return apiBodyRepository.findByApiId(apiId);
+    }
+
+    @Override
     public Page<ApiBody> page(ApiBodySearchVo param) {
         Pageable pageable = new PageRequest(param.getPage(),param.getPagesize());
 

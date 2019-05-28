@@ -14,6 +14,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -60,6 +61,11 @@ public class ApiParamsServiceImpl implements IApiParamsService {
     @Override
     public ApiParams detail(String id) {
         return apiParamsRepository.findById(id).get();
+    }
+
+    @Override
+    public List<ApiParams> findAllByApiId(String apiId) {
+        return apiParamsRepository.findAllByApiId(apiId);
     }
 
     @Override

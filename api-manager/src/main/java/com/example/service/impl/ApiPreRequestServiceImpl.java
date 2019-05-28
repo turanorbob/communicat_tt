@@ -63,6 +63,11 @@ public class ApiPreRequestServiceImpl implements IApiPreRequestService {
     }
 
     @Override
+    public ApiPreRequestScript findByApiId(String apiId) {
+        return apiPreRequestScriptRepository.findByApiId(apiId);
+    }
+
+    @Override
     public Page<ApiPreRequestScript> page(ApiPreRequestSearchVo param) {
         Pageable pageable = new PageRequest(param.getPage(),param.getPagesize());
 

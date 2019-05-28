@@ -17,7 +17,7 @@ public class HttpUtilTest {
     @Test
     public void testGet(){
         String url = "http://www.izhishi.site";
-        System.out.println(HttpUtil.get(url, null));
+        System.out.println(HttpUtil.get(url, null, null));
     }
 
     @Test
@@ -25,7 +25,7 @@ public class HttpUtilTest {
         String url = "https://postman-echo.com/get" ;
         Map<String, String> queryParams = new HashMap<>(1);
         queryParams.put("test", "123");
-        System.out.println(HttpUtil.get(url, queryParams));
+        System.out.println(HttpUtil.get(url, null, queryParams));
     }
 
     @Test
@@ -33,7 +33,7 @@ public class HttpUtilTest {
         String url = "https://postman-echo.com/post";
         Map<String, String> params = new HashMap<>();
         params.put("strange", "boom");
-        System.out.println(HttpUtil.postFormData(url, params));
+        System.out.println(HttpUtil.postFormData(url, params, null, null, null));
     }
 
 }

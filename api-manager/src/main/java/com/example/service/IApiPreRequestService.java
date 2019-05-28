@@ -15,5 +15,7 @@ public interface IApiPreRequestService {
 
     ApiPreRequestScript detail(String id);
 
+    ApiPreRequestScript findByApiId(String apiId);
+
     Page<ApiPreRequestScript> page(ApiPreRequestSearchVo param);
 }

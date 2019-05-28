@@ -1,6 +1,5 @@
 package com.example.service.impl;
 
-import com.example.entity.Api;
 import com.example.entity.ApiEnvCategory;
 import com.example.repository.ApiEnvCategoryRepository;
 import com.example.service.IApiEnvCategoryService;

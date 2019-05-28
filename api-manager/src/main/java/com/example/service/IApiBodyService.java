@@ -15,5 +15,7 @@ public interface IApiBodyService {
 
     ApiBody detail(String id);
 
+    ApiBody findByApiId(String apiId);
+
     Page<ApiBody> page(ApiBodySearchVo param);
 }

@@ -6,6 +6,8 @@ import com.example.vo.ApiParamsSearchVo;
 import com.example.vo.UpdateApiParamsVo;
 import org.springframework.data.domain.Page;
 
+import java.util.List;
+
 public interface IApiParamsService {
     boolean create(AddApiParamsVo param);
 
@@ -14,6 +16,8 @@ public interface IApiParamsService {
     boolean delete(String id);
 
     ApiParams detail(String id);
+
+    List<ApiParams> findAllByApiId(String apiId);
 
     Page<ApiParams> page(ApiParamsSearchVo param);
 }

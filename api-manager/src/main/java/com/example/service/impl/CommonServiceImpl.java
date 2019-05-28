@@ -1,11 +1,17 @@
 package com.example.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.example.entity.Api;
-import com.example.service.IApiService;
-import com.example.service.ICommonService;
+import com.example.entity.ApiBody;
+import com.example.entity.ApiHeaders;
+import com.example.entity.ApiParams;
+import com.example.service.*;
 import com.example.util.HttpUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 
 /**
  * @Description
@@ -18,13 +24,33 @@ public class CommonServiceImpl implements ICommonService {
 
     @Autowired
     private IApiService apiService;
+    @Autowired
+    private IApiParamsService apiParamsService;
+    @Autowired
+    private IApiHeadersService apiHeadersService;
+    @Autowired
+    private IApiBodyService apiBodyService;
 
     @Override
-    public Object call(String apiId) {
+    public Object call(String apiId, JSONObject params) {
         Api entity = apiService.detail(apiId);
         if(entity == null){
             return null;
         }
-        return HttpUtil.call(entity, null, null, null);
+        List<ApiHeaders> apiHeadersList = apiHeadersService.findAllByApiId(apiId);
+        List<ApiParams> apiParamsList = apiParamsService.findAllByApiId(apiId);
+        ApiBody apiBody = apiBodyService.findByApiId(apiId);
+        if (apiBody != null) {
+            apiBody.setContent(parse(apiBody.getContent(), params));
+        }
+        return HttpUtil.call(entity, apiParamsList, apiHeadersList, apiBody);
+    }
+
+    private String parse(String content, JSONObject params) {
+        for (String key : params.keySet()) {
+            content = content.replaceAll("\\$\\{".concat(key).concat("\\}")
+                    , params.get(key) != null ? params.getString(key) : "");
+        }
+        return content;
     }
 }

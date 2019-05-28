@@ -1,6 +1,5 @@
 package com.example.service.impl;
 
-import com.example.entity.Api;
 import com.example.entity.ApiHeaders;
 import com.example.repository.ApiHeadersRepository;
 import com.example.service.IApiHeadersService;
@@ -15,6 +14,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -61,6 +61,11 @@ public class ApiHeadersServiceImpl implements IApiHeadersService {
     @Override
     public ApiHeaders detail(String id) {
         return apiHeadersRepository.findById(id).get();
+    }
+
+    @Override
+    public List<ApiHeaders> findAllByApiId(String apiId) {
+        return apiHeadersRepository.findAllByApiId(apiId);
     }
 
     @Override
