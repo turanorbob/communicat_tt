@@ -11,6 +11,7 @@
         <module>springcloud-session-zuul</module>
         <module>api-manager</module>
         <module>code-generator</module>
+        <module>domain-test</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

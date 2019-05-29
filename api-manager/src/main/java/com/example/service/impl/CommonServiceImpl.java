@@ -37,13 +37,13 @@ public class CommonServiceImpl implements ICommonService {
         if(entity == null){
             return null;
         }
-        List<ApiHeaders> apiHeadersList = apiHeadersService.findAllByApiId(apiId);
-        List<ApiParams> apiParamsList = apiParamsService.findAllByApiId(apiId);
+        List<ApiHeaders> headers = apiHeadersService.findAllByApiId(apiId);
+        List<ApiParams> queryParams = apiParamsService.findAllByApiId(apiId);
         ApiBody apiBody = apiBodyService.findByApiId(apiId);
         if (apiBody != null) {
             apiBody.setContent(parse(apiBody.getContent(), params));
         }
-        return HttpUtil.call(entity, apiParamsList, apiHeadersList, apiBody);
+        return HttpUtil.call(entity, queryParams, headers, apiBody);
     }
 
     private String parse(String content, JSONObject params) {

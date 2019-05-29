@@ -20,6 +20,10 @@ public class Application {
     @Value("${http.port}")
     private Integer port;
 
+    public static void main(String args[]) {
+        SpringApplication.run(Application.class);
+    }
+
     @Bean
     public ServletWebServerFactory servletContainer() {
         TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory();
@@ -31,9 +35,5 @@ public class Application {
         Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
         connector.setPort(port);
         return connector;
-    }
-
-    public static void main(String args[]){
-        SpringApplication.run(Application.class);
     }
 }

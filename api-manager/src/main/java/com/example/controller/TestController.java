@@ -4,7 +4,7 @@ import com.example.vo.ResultVo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
 import lombok.Data;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,8 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
 
     @ApiOperation(value = "put")
-    @PostMapping("/put")
-    public ResultVo<PutModel> create(@RequestBody PutModel param) {
+    @PutMapping("/put")
+    public ResultVo<PutModel> put(@RequestBody PutModel param) {
         ResultVo<PutModel> response = new ResultVo<>();
         response.setObject(param);
         return response.success();
