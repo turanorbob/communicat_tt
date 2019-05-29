@@ -1,21 +1,13 @@
 server:
-  port: 443
-  ssl:
-    key-store: classpath:server.keystore
-    key-alias: tomcat
-    enabled: true
-    key-store-password: liaojian
-    key-store-type: JKS
-http:
   port: 80
 spring:
   profiles:
     active: product
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/api?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
-    username: root
-    password: liaojian
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:file:~/.h2/testdb
+    username: sa
+    password:
   jpa:
     hibernate:
       ddl-auto: none
