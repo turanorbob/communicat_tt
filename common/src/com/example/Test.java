@@ -11,7 +11,8 @@ import java.util.List;
  * @Date 2019/5/21
  */
 public class Test {
-    public static void main(String args[]){
+
+    public static void testForeachBreak() {
         List<String> data = new ArrayList<>();
         data.add("A");
         data.add("B");
@@ -23,6 +24,10 @@ public class Test {
             }
             System.out.println(ele);
         });
+    }
+
+    public static void main(String args[]) {
+        System.out.println(Test.class.getName());
 
     }
 }

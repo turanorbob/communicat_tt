@@ -23,23 +23,31 @@ public class IndexController {
 
     @GetMapping("/")
     public String index(ModelMap map, HttpSession httpSession) {
-        log.info("sessionId: " + httpSession.getId());
+        log.info("sessionId1: " + httpSession.getId());
         Map<String, String> data = new HashMap<>();
         data.put("name", "legend");
         map.putAll(data);
         return "views/index";
     }
 
+    @GetMapping("/login.html")
+    public String login(ModelMap map, HttpSession httpSession) {
+        Map<String, String> data = new HashMap<>();
+        data.put("username", "legend");
+        map.putAll(data);
+        return "views/login";
+    }
+
     @GetMapping("/welcome")
     public String welcome(HttpSession httpSession) {
-        log.info("sessionId: " + httpSession.getId());
+        log.info("sessionId2: " + httpSession.getId());
         return "views/welcome";
     }
 
     @PostMapping("/post")
     @ResponseBody
     public String post(HttpSession httpSession) {
-        log.info("sessionId: " + httpSession.getId());
+        log.info("sessionId3: " + httpSession.getId());
         return "post";
     }
 }

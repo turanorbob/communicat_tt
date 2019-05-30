@@ -108,7 +108,7 @@
                     <serverId>docker-aliyun</serverId>
                     <registryUrl>registry.cn-beijing.aliyuncs.com</registryUrl>
                     <forceTags>true</forceTags>
-                    <dockerHost>http://192.168.31.20:2375</dockerHost>
+                    <!--<pushImage>true</pushImage>-->
                     <imageName>${docker.image.prefix}:${project.version}</imageName>
                     <dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
                     <dockerHost>http://127.0.0.1:2375</dockerHost>
