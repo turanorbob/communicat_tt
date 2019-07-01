@@ -12,6 +12,7 @@
         <module>api-manager</module>
         <module>code-generator</module>
         <module>domain-test</module>
+        <module>solr</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
