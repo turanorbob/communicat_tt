@@ -6,7 +6,7 @@ CREATE TABLE `api_collection` (
   UNIQUE KEY `api_collection_un` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `api` (
+CREATE TABLE `apiInterface` (
   `id` varchar(32) NOT NULL,
   `collection_id` varchar(32) NOT NULL,
   `name` varchar(100) NOT NULL,

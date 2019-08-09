@@ -1,6 +1,6 @@
 package com.example.service.impl;
 
-import com.example.entity.Api;
+import com.example.entity.ApiInterface;
 import com.example.repository.ApiRepository;
 import com.example.service.IApiService;
 import com.example.util.IdWorker;
@@ -30,7 +30,7 @@ public class ApiServiceImpl implements IApiService {
 
     @Override
     public boolean create(AddApiVo param) {
-        Api entity = new Api();
+        ApiInterface entity = new ApiInterface();
         BeanUtils.copyProperties(param, entity);
         entity.setId(IdWorker.getUUID32());
         return apiRepository.save(entity) != null;
@@ -38,11 +38,11 @@ public class ApiServiceImpl implements IApiService {
 
     @Override
     public boolean update(UpdateApiVo param) {
-        Optional<Api> optionalApi = apiRepository.findById(param.getId());
+        Optional<ApiInterface> optionalApi = apiRepository.findById(param.getId());
         if(!optionalApi.isPresent()){
             return false;
         }
-        Api entity = optionalApi.get();
+        ApiInterface entity = optionalApi.get();
         BeanUtils.copyProperties(param, entity);
         return apiRepository.save(entity) != null;
     }
@@ -57,12 +57,12 @@ public class ApiServiceImpl implements IApiService {
     }
 
     @Override
-    public Api detail(String id) {
+    public ApiInterface detail(String id) {
         return apiRepository.findById(id).get();
     }
 
     @Override
-    public Page<Api> page(ApiSearchVo param) {
+    public Page<ApiInterface> page(ApiSearchVo param) {
         Pageable pageable = new PageRequest(param.getPage(),param.getPagesize());
 
         return apiRepository.findAll(pageable);

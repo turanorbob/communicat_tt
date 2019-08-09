@@ -1,7 +1,7 @@
 package com.example.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
-import com.example.entity.Api;
+import com.example.entity.ApiInterface;
 import com.example.entity.ApiBody;
 import com.example.entity.ApiHeaders;
 import com.example.entity.ApiParams;
@@ -33,7 +33,7 @@ public class CommonServiceImpl implements ICommonService {
 
     @Override
     public Object call(String apiId, JSONObject params) {
-        Api entity = apiService.detail(apiId);
+        ApiInterface entity = apiService.detail(apiId);
         if(entity == null){
             return null;
         }

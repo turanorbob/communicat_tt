@@ -3,6 +3,7 @@
     <!--<img src="./assets/logo.png">-->
     <div>
       <el-button @click="startHacking">Start</el-button>
+      <el-button type="button">submit</el-button>
     </div>
   </div>
 </template>
@@ -25,6 +26,6 @@ export default {
 <style>
 #app {
   font-family: Helvetica, sans-serif;
-  text-align: center;
+  text-align: left;
 }
 </style>

@@ -1,6 +1,6 @@
 package com.example.controller;
 
-import com.example.entity.Api;
+import com.example.entity.ApiInterface;
 import com.example.service.IApiService;
 import com.example.vo.AddApiVo;
 import com.example.vo.ApiSearchVo;
@@ -51,16 +51,16 @@ public class ApiParamsController {
 
     @ApiOperation(value = "detail")
     @GetMapping("/detail/{id}")
-    public ResultVo<Api> detail(@PathVariable("id") String id){
-        ResultVo<Api> response = new ResultVo<>();
+    public ResultVo<ApiInterface> detail(@PathVariable("id") String id){
+        ResultVo<ApiInterface> response = new ResultVo<>();
         response.setObject(apiService.detail(id));
         return response.success();
     }
 
     @ApiOperation(value = "search")
     @PostMapping("/search")
-    public ResultVo<Page<Api>> search(ApiSearchVo param){
-        ResultVo<Page<Api>> response = new ResultVo<>();
+    public ResultVo<Page<ApiInterface>> search(ApiSearchVo param){
+        ResultVo<Page<ApiInterface>> response = new ResultVo<>();
         response.setObject(apiService.page(param));
         return response.success();
     }

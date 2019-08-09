@@ -28,7 +28,7 @@
 |id     |name       |description    |
 |-------|-----------|---------------|
 
-* api
+* apiInterface
 
 |id     |collection_id  |name       |method     |url        |hasParams          |hasAuthorization        |hasHeaders      |hasBody     |hasPreRequestScript|
 |-------|---------------|-----------|-----------|-----------|-------------------|------------------------|----------------|------------|-------------------|
@@ -64,4 +64,4 @@
 |-------|-------------|-------------|---------------|---------------|
 
 ##Sql
->>CREATE DATABASE IF NOT EXISTS api DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+>>CREATE DATABASE IF NOT EXISTS apiInterface DEFAULT CHARSET utf8 COLLATE utf8_general_ci;

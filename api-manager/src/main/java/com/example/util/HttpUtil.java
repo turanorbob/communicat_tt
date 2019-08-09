@@ -1,6 +1,6 @@
 package com.example.util;
 
-import com.example.entity.Api;
+import com.example.entity.ApiInterface;
 import com.example.entity.ApiBody;
 import com.example.entity.ApiHeaders;
 import com.example.entity.ApiParams;
@@ -45,8 +45,8 @@ import java.util.Map;
 @Log
 public class HttpUtil {
 
-    public static Object call(Api api, List<ApiParams> params, List<ApiHeaders> headers, ApiBody apiBody){
-        String url = api.getUrl();
+    public static Object call(ApiInterface apiInterface, List<ApiParams> params, List<ApiHeaders> headers, ApiBody apiBody){
+        String url = apiInterface.getUrl();
         boolean hasHeader = !CollectionUtils.isEmpty(headers);
         boolean hasQueryParam = !CollectionUtils.isEmpty(params);
 
@@ -75,14 +75,14 @@ public class HttpUtil {
             }
         }
 
-        if (api.getMethod().equals(HttpMethod.GET.name())) {
+        if (apiInterface.getMethod().equals(HttpMethod.GET.name())) {
             // about get form params, that is ?xx=xxx
             return get(url, headerParams, queryParams);
-        } else if (api.getMethod().equals(HttpMethod.POST.name())) {
+        } else if (apiInterface.getMethod().equals(HttpMethod.POST.name())) {
             return postFormData(url, headerParams, queryParams, formParams, json);
-        } else if (api.getMethod().equals(HttpMethod.PUT.name())) {
+        } else if (apiInterface.getMethod().equals(HttpMethod.PUT.name())) {
             return putFormData(url, headerParams, queryParams, formParams, json);
-        } else if (api.getMethod().equals(HttpMethod.DELETE.name())) {
+        } else if (apiInterface.getMethod().equals(HttpMethod.DELETE.name())) {
             return delete(url);
         }
         return null;
