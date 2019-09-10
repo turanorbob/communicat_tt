@@ -1,0 +1,45 @@
+server:
+  port: 443
+  ssl:
+    key-store: classpath:server.keystore
+    key-alias: tomcat
+    enabled: true
+    key-store-password: liaojian
+    key-store-type: JKS
+http:
+  port: 80
+logging:
+  level:
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
+    org.hibernate.engine.QueryParameters: DEBUG
+    org.hibernate.engine.query.HQLQueryPlan: DEBUG
+spring:
+  profiles:
+    active: product
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/api?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+    username: root
+    password: liaojian
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      format_sql: true
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: UTC
+  freemarker:
+    template-loader-path: classpath:/templates
+    cache: false
+    charset: UTF-8
+    check-template-location: true
+    content-type: text/html
+    expose-request-attributes: false
+    expose-session-attributes: false
+    request-context-attribute: request
+    suffix: .ftl
+  resources:
+    static-locations: classpath:/META-INF/resources/,classpath:/resources/static/,classpath:/static/,classpath:/public

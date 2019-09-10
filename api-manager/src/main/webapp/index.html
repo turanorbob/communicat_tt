@@ -3,20 +3,27 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Hello React!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
     <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
     <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div id="example"></div>
-<script type="text/babel">
-    function Welcome(props) {
-        return <h1>Hello, {props.name}</h1>;
-    }
-    ReactDOM.render(
-        Welcome({name:"legend"}),
-        document.getElementById('example')
-    );
-</script>
+<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">API Engine</a>
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+            <a class="nav-link" href="#">Sign out</a>
+        </li>
+    </ul>
+</nav>
+<div class="container-fluid" style="background-color: red">
+hello world
+</div>
 </body>
 </html>
